@@ -1,3 +1,13 @@
+@extends('layout')
+
+@section('conteudo')
+
+    @if(session('message'))
+        <div class="alert alert-success">
+            <p>{{session('message')}}</p>
+        </div>
+         @endif
+
 <form method="POST" action="{{ isset($survey)? route('surveys.update', ['id'=> $survey->id]) : route('surveys.store')}}">
     @csrf
     <div>
@@ -32,6 +42,8 @@
     <button type="submit">Salvar</button>
 </form>
 
+
+
 <script>
     var butAdd = document.getElementById("add");
     butAdd.addEventListener('click', function(){
@@ -46,3 +58,5 @@
     });
 
 </script>
+
+@endsection

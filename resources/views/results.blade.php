@@ -1,3 +1,6 @@
+@extends('layout')
+
+@section('conteudo')
 <table class="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -19,3 +22,4 @@
                     @endforeach
                 </tbody>
             </table>
+@endsection

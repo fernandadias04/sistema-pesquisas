@@ -46,12 +46,21 @@ class SurveyController extends Controller
 
     public function store(Request $request)
     {
+
+        $options = $request->get('optionsHide');
+
+        $tamOp = count($options);
+
+        if ($tamOp < 2  )
+        {
+            return redirect()->route('surveys.create')->with('message', 'Enquete deve ter no míninmo duas opções');
+        }
+
         $survey = Survey::create([
             'name'=>$request->get('name'),
             'user_id'=>auth()->id(),
         ]);
 
-        $options = $request->get('optionsHide');
         foreach ($options as $option)
         {
             $op = Option::create([
@@ -115,6 +124,20 @@ class SurveyController extends Controller
 
         return redirect()->route('surveys');
 
+    }
+
+    public function share(Request $request, Survey $survey)
+    {
+        return view('vote', compact('survey'));
+    }
+
+    public function vote(Request $request, Survey $survey)
+    {
+        $id = $request->get('vote');
+        $option = Option::find($id);
+        $option->increment('votes');
+
+        return redirect()->route('survey.share', compact('survey'));
     }
 
     public  function destroy(Request $request)

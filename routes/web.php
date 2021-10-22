@@ -29,7 +29,9 @@ Route::post('/create', [SurveyController::class, 'store'])->middleware(['auth'])
 Route::delete('/delete', [SurveyController::class, 'destroy'])->middleware(['auth'])->name('surveys.delete');
 Route::get('/edit/{id}', [SurveyController::class, 'edit'])->middleware(['auth'])->name('surveys.edit');
 Route::post('/edit/{id}', [SurveyController::class, 'update'])->middleware(['auth'])->name('surveys.update');
-Route::get('results/{survey}', [SurveyController::class, 'results'])->middleware(['auth'])->name('surveys.results');
+Route::get('/results/{survey}', [SurveyController::class, 'results'])->middleware(['auth'])->name('surveys.results');
+Route::get('/survey/vote/{survey}', [SurveyController::class, 'share'])->name('survey.share');
+Route::post('/survey/vote/{survey}', [SurveyController::class, 'vote'])->name('survey.vote');
 
 
 require __DIR__.'/auth.php';
