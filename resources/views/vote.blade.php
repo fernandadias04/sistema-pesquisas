@@ -1,6 +1,13 @@
 @extends('layout')
 
 @section('conteudo')
+
+@if(session('mensagem'))
+        <div class="alert alert-success">
+            <p>{{session('mensagem')}}</p>
+        </div>
+ @endif
+
 <p>{{$survey->name}}</p>
 <form id="form" action="{{route('survey.vote', $survey)}}" method="POST">
     @csrf
