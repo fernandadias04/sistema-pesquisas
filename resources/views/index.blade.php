@@ -1,13 +1,8 @@
 @extends('layout')
 
 @section('conteudo')
-        <form action="{{'create'}}">
-            <x-button class="ml-3">
-                    {{ __('Nova Enquete') }}
-            </x-button>
-        </form>
         <div>
-            <table class="table table-striped table-dark">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Pesquisas</th>

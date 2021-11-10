@@ -9,13 +9,37 @@
 </head>
 <body>
 
+
+
     <div class="container">
-        <nav class="navbar navbar-dark bg-dark">
-            <a href="#"><h2>Info Pesquisa</h2></a>
-            <div>
-                <button>
-                    
-                </button>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="{{route('surveys')}}"><h2>Info Pesquisa</h2></a>
+
+
+                <div>
+
+                    <form  class="form-inline my-2 my-lg-0">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Pesquisa" value="{{ request()->get('search') }}" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisa</button>
+                    </form>
+
+
+                    <form  class="form-inline btn btn-danger " method="POST" action="{{ route('logout') }}" >
+                        @csrf
+                        <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+
+                    <form action="{{'create'}}">
+                        <x-button class="btn btn-info">
+                                {{ __('Nova Enquete') }}
+                        </x-button>
+                    </form>
+
             </div>
         </nav>
 

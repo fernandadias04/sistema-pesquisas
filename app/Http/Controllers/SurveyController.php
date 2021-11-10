@@ -6,6 +6,7 @@ use App\Models\Option;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Whoops\Run;
 
 class SurveyController extends Controller
 {
@@ -15,9 +16,9 @@ class SurveyController extends Controller
         $query = Survey::query();
         $query->where('user_id', '=', auth()->id());
 
-        if ($request->has('consulta'))
+        if ($request->has('search'))
         {
-            $query->where('name', 'like', '%'.str_replace(' ', '%', $request->get('consulta')).'%');
+            $query->where('name', 'like', '%'.str_replace(' ', '%', $request->get('search')).'%');
         }
 
         $query->orderBy('name', 'ASC');
@@ -137,7 +138,7 @@ class SurveyController extends Controller
         $option = Option::find($id);
         $option->increment('votes');
 
-        return redirect()->route('survey.share', compact('survey'));
+        return redirect()->route('survey.share', compact('survey'))->with('mensagem', 'Voto computado com sucesso!');
     }
 
     public  function destroy(Request $request)

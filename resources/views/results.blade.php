@@ -1,7 +1,14 @@
 @extends('layout')
 
 @section('conteudo')
-<table class="table table-striped table-dark">
+
+@if(session('mensagem'))
+    <div class="alert alert-success">
+        <p>{{session('mensagem')}}</p>
+    </div>
+@endif
+
+<table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Pesquisas</th>
@@ -22,4 +29,8 @@
                     @endforeach
                 </tbody>
             </table>
+            <div>
+                <p>Link para compartilhar sua enquete: </p>
+                <a href="{{route('survey.share', $survey)}}">{{route('survey.share', $survey)}}</a>
+            </div>
 @endsection
