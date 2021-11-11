@@ -718,5 +718,8 @@
     "Survey Options" : "Opções da Enquete",
     "Add Option": "Adicionar Pergunta",
     "Survey Title": "Títudo da Enquete",
-    "Back" : "Voltar"
+    "Back" : "Voltar",
+    "Surveys" : "Enquetes",
+    "Survey Results: :name": "Resultados da Enquete: :name",
+    "Editing Survey: :name": "Editando Enquete: :name"
 }

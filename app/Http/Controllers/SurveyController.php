@@ -26,7 +26,10 @@ class SurveyController extends Controller
         $surveys = $query->paginate(10);
         $surveys->appends($request->all());
 
-        return view('surveys.index', compact('surveys'));
+        return view('surveys.index', [
+            'surveys' => $surveys,
+            'pageTitle' => __('Surveys')
+        ]);
     }
 
     public function results(Request $request, Survey $survey)
@@ -35,12 +38,17 @@ class SurveyController extends Controller
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        return view('surveys.results', compact('survey'));
+        return view('surveys.results', [
+            'survey' => $survey,
+            'pageTitle' => __('Survey Results: :name', ['name' => $survey->name])
+        ]);
     }
 
     public function create(Request $request)
     {
-        return view('surveys.form');
+        return view('surveys.form', [
+            'pageTitle' => __('New Survey')
+        ]);
     }
 
     public function store(Request $request)
@@ -77,7 +85,10 @@ class SurveyController extends Controller
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        return view('surveys.form', compact('survey'));
+        return view('surveys.form', [
+            'survey' => $survey,
+            'pageTitle' => __('Editing Survey: :name', ['name' => $survey->name])
+        ]);
     }
 
     public function update(Request $request, $id)
